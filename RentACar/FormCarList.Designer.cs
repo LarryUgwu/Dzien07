@@ -31,19 +31,21 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCarList));
             this.grid = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuDelCar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tbFind = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbInsert = new System.Windows.Forms.ToolStripButton();
             this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuDelCar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuRefresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditCar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCarOper = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grid
@@ -63,6 +65,38 @@
             this.grid.Size = new System.Drawing.Size(547, 424);
             this.grid.TabIndex = 0;
             this.grid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grid_CellFormatting);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCarOper,
+            this.mnuEditCar,
+            this.menuDelCar,
+            this.toolStripMenuItem1,
+            this.mnuRefresh});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 120);
+            // 
+            // menuDelCar
+            // 
+            this.menuDelCar.Name = "menuDelCar";
+            this.menuDelCar.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.menuDelCar.Size = new System.Drawing.Size(180, 22);
+            this.menuDelCar.Text = "Usuń rekord";
+            this.menuDelCar.Click += new System.EventHandler(this.menuDelCar_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // mnuRefresh
+            // 
+            this.mnuRefresh.Name = "mnuRefresh";
+            this.mnuRefresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.mnuRefresh.Size = new System.Drawing.Size(180, 22);
+            this.mnuRefresh.Text = "Odśwież";
+            this.mnuRefresh.Click += new System.EventHandler(this.mnuRefresh_Click);
             // 
             // toolStrip1
             // 
@@ -104,6 +138,7 @@
             this.tsbInsert.Size = new System.Drawing.Size(23, 22);
             this.tsbInsert.Text = "toolStripButton1";
             this.tsbInsert.ToolTipText = "Dodaj samochód";
+            this.tsbInsert.Click += new System.EventHandler(this.tsbInsert_Click);
             // 
             // tsbRefresh
             // 
@@ -115,35 +150,20 @@
             this.tsbRefresh.ToolTipText = "Odśwież dane";
             this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
             // 
-            // contextMenuStrip1
+            // mnuEditCar
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuDelCar,
-            this.toolStripMenuItem1,
-            this.mnuRefresh});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 76);
+            this.mnuEditCar.Name = "mnuEditCar";
+            this.mnuEditCar.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.mnuEditCar.Size = new System.Drawing.Size(180, 22);
+            this.mnuEditCar.Text = "Edytuj";
+            this.mnuEditCar.Click += new System.EventHandler(this.mnuEditCar_Click);
             // 
-            // menuDelCar
+            // mnuCarOper
             // 
-            this.menuDelCar.Name = "menuDelCar";
-            this.menuDelCar.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.menuDelCar.Size = new System.Drawing.Size(180, 22);
-            this.menuDelCar.Text = "Usuń rekord";
-            this.menuDelCar.Click += new System.EventHandler(this.menuDelCar_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // mnuRefresh
-            // 
-            this.mnuRefresh.Name = "mnuRefresh";
-            this.mnuRefresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.mnuRefresh.Size = new System.Drawing.Size(180, 22);
-            this.mnuRefresh.Text = "Odśwież";
-            this.mnuRefresh.Click += new System.EventHandler(this.mnuRefresh_Click);
+            this.mnuCarOper.Name = "mnuCarOper";
+            this.mnuCarOper.Size = new System.Drawing.Size(180, 22);
+            this.mnuCarOper.Text = "Wydaj/Przyjmij";
+            this.mnuCarOper.Click += new System.EventHandler(this.mnuCarOper_Click);
             // 
             // FormCarList
             // 
@@ -156,9 +176,9 @@
             this.Text = "Lista samochodów";
             this.Load += new System.EventHandler(this.FormCarList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +197,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuDelCar;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuRefresh;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditCar;
+        private System.Windows.Forms.ToolStripMenuItem mnuCarOper;
     }
 }

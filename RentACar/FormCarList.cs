@@ -96,7 +96,7 @@ namespace RentACar
             }
             //good practice to stosowanie context manager
             //zwalnianie zasobów!
-            //czyli w 102 dodajemy using i klamry w 103 i 113
+            //czyli w 80 dodajemy using i klamry w 81 i 96
 
             
 
@@ -139,6 +139,57 @@ namespace RentACar
         private void mnuRefresh_Click(object sender, EventArgs e)
         {
             RefreshData();
+        }
+
+        private void tsbInsert_Click(object sender, EventArgs e)
+        {
+            AddNewCar(); //robimy na to metode, bo auto bedziemy dodawać w dwóch miejscach
+        }
+
+        private void AddNewCar()
+        {
+            FormAddCar form = new FormAddCar();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                RefreshData();
+            }
+            
+        }
+
+        private void mnuEditCar_Click(object sender, EventArgs e)
+        {
+            if (grid.SelectedRows.Count == 0) return; //jesli kolekcja jest pusta to nic nie moge edytowac
+
+            int selectedIndex = grid.SelectedRows[0].Index;
+            int rowId = Convert.ToInt32(grid["id", selectedIndex].Value);
+
+            FormAddCar form = new FormAddCar();
+            form.RowId = rowId;
+            if (form.ShowDialog() == DialogResult.OK) 
+            {
+                RefreshData();
+            }
+        }
+
+        private void mnuCarOper_Click(object sender, EventArgs e)
+        {
+            if (grid.SelectedRows.Count == 0) return;
+
+            int selectedIndex = grid.SelectedRows[0].Index;
+            int rowId = Convert.ToInt32(grid["id", selectedIndex].Value);
+            String regplate = grid["registration_plate", selectedIndex].Value.ToString();
+            //czy auto jest dost czy nie
+            int avail = Convert.ToInt32(grid["avail", selectedIndex].Value);
+
+            FormOperation form = new FormOperation();
+            form.CarId = rowId;
+            form.RegPlate = regplate;
+            form.OperBack = (avail == 0);
+
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+                RefreshData();
+            }
         }
     }
 }
